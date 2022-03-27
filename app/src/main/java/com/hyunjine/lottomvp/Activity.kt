@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewTreeObserver
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import com.hyunjine.lottomvp.databinding.ActivityBinding
 import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
@@ -36,5 +38,11 @@ class Activity : AppCompatActivity() {
                 }
             }
         )
+
+        supportActionBar?.hide()
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+//        NavigationUI.setupWithNavController(binding.bottomNavigate, navController)
     }
 }

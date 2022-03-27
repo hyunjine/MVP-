@@ -1,85 +1,35 @@
 package com.hyunjine.lottomvp.ui.main
 
-import android.content.Context
-import android.os.Bundle
-import android.util.Log
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.hyunjine.lottomvp.R
 import com.hyunjine.lottomvp.databinding.FragmentMainBinding
-import com.hyunjine.lottomvp.util.constant.Constant.TAG
+import com.hyunjine.lottomvp.util.base.BaseFragment
 
-class MainFragment: Fragment() {
+class MainFragment: BaseFragment<FragmentMainBinding>() {
 
-    private lateinit var binding: FragmentMainBinding
-    private lateinit var navController : NavController
+    override fun initialize() {
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d(TAG, "onAttach")
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate: ")
+    override fun setBinding(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.d(TAG, "onCreateView: ")
-        binding = FragmentMainBinding.inflate(layoutInflater, container, false)
-        return binding.root
+    override fun viewInitialize() {
+        val drawable = binding.img.drawable as AnimatedVectorDrawable
+        drawable.start()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        navController = Navigation.findNavController(binding.root)
 
+    override fun viewEvent() {
         binding.btn.setOnClickListener {
-            navController.navigate(MainFragmentDirections.actionMainFragmentToSubFragment())
+            Toast.makeText(requireContext(), "생성~", Toast.LENGTH_SHORT).show()
         }
-        Log.d(TAG, "onViewCreated: ")
     }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d(TAG, "onStart: ")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "onResume: ")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d(TAG, "onPause: ")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d(TAG, "onStop: ")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.d(TAG, "onDestroyView: ")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy: ")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d(TAG, "onDetach: ")
-    }
-
 }
